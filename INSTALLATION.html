@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pet Dashboard — Installation &amp; User Guide</title>
+  <style>
+    /* ---- Design tokens (matches the app's variables.css) ---- */
+    :root {
+      --color-bg: #FAF7F2;
+      --color-surface: #FFFFFF;
+      --color-border: #E8E1D6;
+      --color-text: #2B2620;
+      --color-text-muted: #6F6558;
+      --color-text-faint: #A79E8F;
+      --color-primary: #8A6E4B;
+      --color-primary-hover: #755A3A;
+      --color-primary-soft: #F1E7D8;
+      --color-accent: #6B8F71;
+      --color-accent-soft: #E6EEE6;
+      --color-warning: #C77B3C;
+      --color-warning-soft: #FBEADA;
+      --color-danger: #B4543E;
+      --color-danger-soft: #F8E4DE;
+      --shadow-sm: 0 1px 2px rgba(43, 38, 32, 0.06);
+      --shadow-md: 0 4px 12px rgba(43, 38, 32, 0.08);
+      --space-1: 0.25rem;
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+      --font-size-xs: 0.75rem;
+      --font-size-sm: 0.875rem;
+      --font-size-md: 1rem;
+      --font-size-lg: 1.25rem;
+      --font-size-xl: 1.75rem;
+      --line-height-normal: 1.5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--color-bg);
+      color: var(--color-text);
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-normal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--color-primary); text-decoration: underline; }
+    a:hover { color: var(--color-primary-hover); }
+
+    /* ---- Layout ---- */
+    .guide {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-7) var(--space-5);
+    }
+
+    .guide-header {
+      text-align: center;
+      margin-bottom: var(--space-7);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .guide-header h1 {
+      font-size: var(--font-size-2xl);
+      margin: 0 0 var(--space-2);
+      color: var(--color-text);
+    }
+
+    .guide-header p {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      margin: 0;
+    }
+
+    /* ---- Sections ---- */
+    .section {
+      margin-bottom: var(--space-7);
+    }
+
+    .section h2 {
+      font-size: var(--font-size-xl);
+      margin: 0 0 var(--space-4);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--color-primary-soft);
+    }
+
+    .section h3 {
+      font-size: var(--font-size-lg);
+      margin: var(--space-5) 0 var(--space-3);
+      color: var(--color-primary);
+    }
+
+    .section p, .section li {
+      color: var(--color-text-muted);
+    }
+
+    .section ul, .section ol {
+      padding-left: var(--space-5);
+      margin: var(--space-3) 0;
+    }
+
+    .section li {
+      margin-bottom: var(--space-2);
+    }
+
+    /* ---- Cards ---- */
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      box-shadow: var(--shadow-sm);
+      margin-bottom: var(--space-4);
+    }
+
+    .card h4 {
+      margin: 0 0 var(--space-3);
+      font-size: var(--font-size-lg);
+      color: var(--color-text);
+    }
+
+    /* ---- Steps ---- */
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      padding: 0;
+      margin: var(--space-3) 0;
+    }
+
+    .steps li {
+      counter-increment: step;
+      padding: var(--space-3) var(--space-4);
+      margin-bottom: var(--space-2);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      position: relative;
+      padding-left: var(--space-8);
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      left: var(--space-3);
+      top: var(--space-3);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-primary);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--font-size-xs);
+      font-weight: 700;
+    }
+
+    /* ---- Code blocks ---- */
+    code {
+      background: var(--color-primary-soft);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: var(--font-size-sm);
+      font-family: "Cascadia Code", "Fira Code", "Consolas", monospace;
+    }
+
+    pre {
+      background: var(--color-primary-soft);
+      padding: var(--space-4);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      font-size: var(--font-size-sm);
+      line-height: 1.6;
+      margin: var(--space-3) 0;
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+    }
+
+    /* ---- Callouts ---- */
+    .callout {
+      border-left: 4px solid var(--color-primary);
+      background: var(--color-primary-soft);
+      padding: var(--space-4);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin: var(--space-4) 0;
+    }
+
+    .callout--success {
+      border-left-color: var(--color-accent);
+      background: var(--color-accent-soft);
+    }
+
+    .callout--warning {
+      border-left-color: var(--color-warning);
+      background: var(--color-warning-soft);
+    }
+
+    .callout--danger {
+      border-left-color: var(--color-danger);
+      background: var(--color-danger-soft);
+    }
+
+    .callout p {
+      margin: 0;
+      color: var(--color-text);
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    /* ---- Tables ---- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--space-3) 0;
+    }
+
+    th, td {
+      text-align: left;
+      padding: var(--space-3);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    th {
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-faint);
+      font-weight: 600;
+    }
+
+    td {
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+    }
+
+    /* ---- Feature grid ---- */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--space-4);
+      margin: var(--space-4) 0;
+    }
+
+    .feature-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-4);
+      text-align: center;
+    }
+
+    .feature-item .icon {
+      font-size: var(--font-size-xl);
+      margin-bottom: var(--space-2);
+    }
+
+    .feature-item h4 {
+      margin: 0 0 var(--space-1);
+      font-size: var(--font-size-sm);
+    }
+
+    .feature-item p {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-faint);
+      margin: 0;
+    }
+
+    /* ---- Navigation ---- */
+    .toc {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-5);
+      margin-bottom: var(--space-7);
+    }
+
+    .toc h3 {
+      font-size: var(--font-size-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text-faint);
+      margin: 0 0 var(--space-3);
+      font-weight: 600;
+    }
+
+    .toc ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-2);
+    }
+
+    .toc a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      padding: var(--space-1) 0;
+      display: block;
+    }
+
+    .toc a:hover {
+      color: var(--color-primary);
+    }
+
+    /* ---- Footer ---- */
+    .guide-footer {
+      text-align: center;
+      padding-top: var(--space-5);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-text-faint);
+      font-size: var(--font-size-xs);
+    }
+
+    /* ---- Print ---- */
+    @media print {
+      body { background: #fff; }
+      .guide { max-width: none; padding: 0; }
+      .toc { break-inside: avoid; }
+      .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+      a { color: inherit; text-decoration: none; }
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 600px) {
+      .guide { padding: var(--space-4) var(--space-3); }
+      .toc ul { grid-template-columns: 1fr; }
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="guide">
+
+    <div class="guide-header">
+      <h1>Pet Dashboard</h1>
+      <p>Installation Guide &amp; User Manual</p>
+    </div>
+
+    <!-- Table of Contents -->
+    <nav class="toc">
+      <h3>Contents</h3>
+      <ul>
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#requirements">System Requirements</a></li>
+        <li><a href="#windows">Windows Installation</a></li>
+        <li><a href="#mac-linux">macOS / Linux Installation</a></li>
+        <li><a href="#android">Android Installation</a></li>
+        <li><a href="#ios">iOS (iPhone/iPad) Installation</a></li>
+        <li><a href="#sync">Multi-Device Sync</a></li>
+        <li><a href="#data">Data Management</a></li>
+        <li><a href="#features">Feature Overview</a></li>
+        <li><a href="#troubleshooting">Troubleshooting</a></li>
+      </ul>
+    </nav>
+
+    <!-- Overview -->
+    <div class="section" id="overview">
+      <h2>Overview</h2>
+      <p>Pet Dashboard is a <strong>free, offline-first</strong> web app for tracking your pet's health, training, grooming, expenses, journal entries, photos, and daily life. It works on any modern browser — no account, no server, no cloud required.</p>
+
+      <div class="callout callout--success">
+        <strong>Privacy</strong>
+        Your data lives in a single JSON file on your device. It never leaves your computer unless you export it.
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-item">
+          <div class="icon">&#128140;</div>
+          <h4>Health Tracking</h4>
+          <p>Vaccinations, medications, vet visits, weight</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">&#127936;</div>
+          <h4>Training</h4>
+          <p>Sessions, skills, achievements, socialization</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">&#128142;</div>
+          <h4>Grooming</h4>
+          <p>Brushing, baths, nail trims, professional groom</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">&#128176;</div>
+          <h4>Expenses</h4>
+          <p>Categorized spending with charts</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">&#128221;</div>
+          <h4>Journal</h4>
+          <p>Daily notes, mood tracking</p>
+        </div>
+        <div class="feature-item">
+          <div class="icon">&#128247;</div>
+          <h4>Photos</h4>
+          <p>Gallery with captions</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- System Requirements -->
+    <div class="section" id="requirements">
+      <h2>System Requirements</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Requirement</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Browser</td>
+            <td>Chrome 120+, Edge 120+, Firefox 120+, Safari 17+</td>
+          </tr>
+          <tr>
+            <td>JavaScript</td>
+            <td>Must be enabled (required to run)</td>
+          </tr>
+          <tr>
+            <td>Internet</td>
+            <td>Only for first load; works fully offline after that</td>
+          </tr>
+          <tr>
+            <td>Storage</td>
+            <td>Minimal — your JSON file is typically under 10 MB</td>
+          </tr>
+          <tr>
+            <td>File System Access API</td>
+            <td>Supported natively in Chromium browsers (Chrome, Edge). Firefox/Safari fall back to download/upload.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Windows Installation -->
+    <div class="section" id="windows">
+      <h2>Windows Installation</h2>
+
+      <h3>Quick Start (Recommended)</h3>
+      <ol class="steps">
+        <li>Download or extract the Pet Dashboard folder to a convenient location (e.g., <code>C:\Users\YourName\Documents\PetDashboard</code>).</li>
+        <li>Double-click <code>start-server.bat</code>.</li>
+        <li>A black console window will open and your default browser will launch automatically to <code>http://localhost:8934/index.html</code>.</li>
+        <li><strong>Leave the console window open</strong> while using the app. Closing it stops the server.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Requires Python or Node.js</strong>
+        The launcher script uses Python's built-in HTTP server (comes pre-installed on most Windows machines) or Node.js. If neither is found, install Python from <a href="https://python.org" target="_blank">python.org</a> (check "Add to PATH").
+      </div>
+
+      <h3>Installing as a PWA (Installed App)</h3>
+      <p>Once the server is running, you can install Pet Dashboard as a standalone app:</p>
+      <ol class="steps">
+        <li>Make sure the server is running (the console window is open).</li>
+        <li>In your browser's address bar, look for the <strong>"Install"</strong> icon (usually a monitor with a downward arrow, or three dots → <strong>"Install Pet Dashboard"</strong>).</li>
+        <li>Click it and follow the prompts.</li>
+        <li>Pet Dashboard will now open in its own window — separate from your browser, with its own desktop icon.</li>
+      </ol>
+
+      <div class="callout callout--success">
+        <strong>Offline Support</strong>
+        Once installed, the app caches itself and works fully offline. You don't need the server running for the installed app.
+      </div>
+    </div>
+
+    <!-- macOS / Linux Installation -->
+    <div class="section" id="mac-linux">
+      <h2>macOS / Linux Installation</h2>
+
+      <h3>Quick Start</h3>
+      <ol class="steps">
+        <li>Open Terminal and navigate to the Pet Dashboard folder:
+          <pre><code>cd ~/Documents/PetDashboard</code></pre>
+        </li>
+        <li>Make the launcher executable (first time only):
+          <pre><code>chmod +x start-server.sh</code></pre>
+        </li>
+        <li>Run the launcher:
+          <pre><code>./start-server.sh</code></pre>
+        </li>
+        <li>Your browser will open automatically. Leave the Terminal window open.</li>
+      </ol>
+
+      <h3>Alternative: Use Python Directly</h3>
+      <p>If you prefer not to use the launcher script:</p>
+      <pre><code>cd ~/Documents/PetDashboard
+python3 -m http.server 8934</code></pre>
+      <p>Then open <code>http://localhost:8934/index.html</code> in your browser.</p>
+
+      <h3>Installing as a PWA</h3>
+      <p>Same as Windows — look for the install icon in your browser's address bar when the server is running.</p>
+    </div>
+
+    <!-- Android Installation -->
+    <div class="section" id="android">
+      <h2>Android Installation</h2>
+
+      <h3>Option A — Same Wi-Fi, Quick &amp; Temporary</h3>
+      <ol class="steps">
+        <li>Run <code>start-server.bat</code> on your Windows/Mac computer.</li>
+        <li>Find your computer's local IP address:
+          <ul>
+            <li><strong>Windows:</strong> Open Command Prompt, run <code>ipconfig</code>, look for "IPv4 Address" (e.g., <code>192.168.1.42</code>).</li>
+            <li><strong>macOS/Linux:</strong> Run <code>ifconfig</code> or <code>ip a</code>.</li>
+          </ul>
+        </li>
+        <li>On your Android phone (same Wi-Fi), open <strong>Chrome</strong> and go to:
+          <pre><code>http://192.168.1.42:8934/index.html</code></pre>
+          (Replace <code>192.168.1.42</code> with your actual IP.)
+        </li>
+        <li>Chrome will show an <strong>"Install app"</strong> prompt, or open the <strong>⋮ menu → "Add to Home screen"</strong>.</li>
+      </ol>
+
+      <div class="callout callout--warning">
+        <strong>Temporary</strong>
+        This only works while your computer's server is running. For permanent access, use Option B.
+      </div>
+
+      <h3>Option B — Free Static Hosting (Recommended)</h3>
+      <p>Since Pet Dashboard has no backend, any free static hosting works:</p>
+      <ol class="steps">
+        <li>Upload all Pet Dashboard files to <strong>GitHub Pages</strong>, <strong>Netlify</strong>, <strong>Vercel</strong>, or <strong>Cloudflare Pages</strong>.</li>
+        <li>Get your URL (e.g., <code>https://yourname.github.io/pet-dashboard/</code>).</li>
+        <li>Open that URL on your phone's Chrome.</li>
+        <li>Tap <strong>⋮ → "Install app"</strong> or <strong>"Add to Home screen"</strong>.</li>
+      </ol>
+
+      <div class="callout callout--success">
+        <strong>Permanent Offline Support</strong>
+        Once installed from a hosted URL, the app works fully offline on your phone — no computer needed.
+      </div>
+    </div>
+
+    <!-- iOS Installation -->
+    <div class="section" id="ios">
+      <h2>iOS (iPhone / iPad) Installation</h2>
+      <ol class="steps">
+        <li>Run the server on your computer (see Windows or macOS instructions above).</li>
+        <li>Find your computer's local IP address (see Android section).</li>
+        <li>On your iPhone/iPad (same Wi-Fi), open <strong>Safari</strong> and go to:
+          <pre><code>http://192.168.1.42:8934/index.html</code></pre>
+        </li>
+        <li>Tap the <strong>Share</strong> button (square with upward arrow).</li>
+        <li>Scroll down and tap <strong>"Add to Home Screen"</strong>.</li>
+        <li>Tap <strong>"Add"</strong> in the top-right corner.</li>
+      </ol>
+
+      <div class="callout">
+        <strong>Safari Limitation</strong>
+        iOS Safari doesn't support the File System Access API, so your data will be saved as downloadable JSON files. You'll use "Open" in Settings to re-open the last file. This works perfectly — you just save and open files explicitly rather than having in-place autosave.
+      </div>
+    </div>
+
+    <!-- Multi-Device Sync -->
+    <div class="section" id="sync">
+      <h2>Multi-Device Sync</h2>
+      <p>Pet Dashboard has no server, so "syncing" between devices means putting your <code>pet-dashboard.json</code> file in a folder that your cloud sync service (OneDrive, Google Drive, Dropbox) keeps in sync.</p>
+
+      <h3>Setup (One-Time)</h3>
+      <ol class="steps">
+        <li>Make sure your sync service (OneDrive, Google Drive, or Dropbox) is installed and running on both devices.</li>
+        <li>On <strong>Device #1</strong>, go to <strong>Settings → Save As…</strong> and save <code>pet-dashboard.json</code> into your synced folder.</li>
+        <li>Wait for it to finish syncing to Device #2 (check the sync client status).</li>
+        <li>On <strong>Device #2</strong>, go to <strong>Settings → Open…</strong> and pick that same file from the synced folder.</li>
+      </ol>
+
+      <div class="callout callout--success">
+        <strong>How It Works</strong>
+        The app itself doesn't talk to OneDrive/Google Drive/Dropbox — it just reads and writes the JSON file. The sync client handles the rest.
+      </div>
+
+      <h3>What Happens When Both Devices Edit</h3>
+      <p>Before every save, the app checks whether the file changed on disk. If it has (meaning the sync client brought in a newer version from your other device), you'll get a prompt:</p>
+      <ul>
+        <li><strong>Reload the newer version</strong> — discards your unsaved edits on this device.</li>
+        <li><strong>Overwrite</strong> — keeps your edits, loses the other device's changes.</li>
+      </ul>
+
+      <div class="callout callout--warning">
+        <strong>Avoid Simultaneous Editing</strong>
+        For best results, don't edit on both devices at the same time. If both devices save within a few seconds of each other, whichever the sync client processes last wins — with no warning.
+      </div>
+
+      <h3>Manual Sync</h3>
+      <p>At any time, go to <strong>Settings → Reload latest</strong> to pull the latest version from disk. This is useful right when you switch devices.</p>
+    </div>
+
+    <!-- Data Management -->
+    <div class="section" id="data">
+      <h2>Data Management</h2>
+
+      <h3>Save / Export</h3>
+      <ul>
+        <li><strong>Autosave:</strong> Once you've opened or saved a file (Chromium browsers only), the app automatically saves your data every 1.5 seconds as you work.</li>
+        <li><strong>Save:</strong> <strong>Settings → Save</strong> writes to the currently open file in place.</li>
+        <li><strong>Save As:</strong> <strong>Settings → Save As…</strong> lets you choose a new location and filename.</li>
+        <li><strong>Export backup:</strong> <strong>Settings → Export backup</strong> downloads the full JSON file for safekeeping.</li>
+      </ul>
+
+      <h3>Open / Import</h3>
+      <ul>
+        <li><strong>Open:</strong> <strong>Settings → Open…</strong> lets you pick an existing JSON file.</li>
+        <li><strong>Import backup:</strong> Same as Open — use it to restore from a backup file.</li>
+      </ul>
+
+      <h3>Export Individual Datasets</h3>
+      <p><strong>Settings → Export data</strong> lets you pull out specific datasets as CSV or JSON:</p>
+      <ul>
+        <li><strong>CSV</strong> — for spreadsheets (Excel, Google Sheets)</li>
+        <li><strong>JSON</strong> — for scripts, AI tools, or custom processing</li>
+      </ul>
+      <p>Available datasets include: weight history, vaccinations, expenses, training sessions, journal entries, and more.</p>
+
+      <h3>Reports</h3>
+      <p><strong>Reports</strong> generates printable summaries:</p>
+      <ul>
+        <li>Health summary</li>
+        <li>Vaccination summary</li>
+        <li>Expense summary</li>
+        <li>Growth report (with weight chart)</li>
+        <li>Training report</li>
+      </ul>
+      <p>Click <strong>"Print / Save as PDF"</strong> to print or save any report.</p>
+    </div>
+
+    <!-- Feature Overview -->
+    <div class="section" id="features">
+      <h2>Feature Overview</h2>
+
+      <h3>Dashboard</h3>
+      <p>Your home screen. Shows today's tasks, upcoming appointments, medication status, training streak, current weight, recent journal notes, grooming reminders, monthly spending, and recent photos — all at a glance.</p>
+
+      <h3>Profile</h3>
+      <p>Your pet's identity: name, breed, birthday, weight, vet info, emergency contacts, food details, microchip number, and a photo.</p>
+
+      <h3>Health</h3>
+      <p>Comprehensive health tracking with 13 subsections:</p>
+      <ul>
+        <li>Vaccinations (with next-due tracking)</li>
+        <li>Medications (active/completed status)</li>
+        <li>Allergies, Illnesses, Injuries, Surgeries</li>
+        <li>Weight &amp; Height history</li>
+        <li>Temperature &amp; Heart rate records</li>
+        <li>Vet visits, Lab results, Insurance claims</li>
+      </ul>
+
+      <h3>Training</h3>
+      <p>Track skills, sessions, achievements, socialization progress, and specialized logs (recall, loose leash, retrieve, swimming, impulse control).</p>
+
+      <h3>Grooming</h3>
+      <p>Brushing, baths, professional grooming, nail trims, ear cleaning, teeth brushing, blow dryer training, coat condition, and matting tracking — with automatic grooming due-date calculations.</p>
+
+      <h3>Schedule</h3>
+      <p>Daily task checklists grouped by time of day (morning/afternoon/evening), plus a calendar view for one-off events.</p>
+
+      <h3>Expenses</h3>
+      <p>Track spending by category with monthly and yearly totals, a category breakdown chart, and customizable categories.</p>
+
+      <h3>Journal</h3>
+      <p>Daily notes with mood tracking and tags. Search across all entries.</p>
+
+      <h3>Cat Integration</h3>
+      <p>Track your dog/cat introduction process (scent → visual → shared space), behavior logs, and stress indicators.</p>
+
+      <h3>Daughter</h3>
+      <p>Track what your daughter does with the puppy during her time: tasks, training help, walks, reading sessions, feeding, rewards, and achievements.</p>
+
+      <h3>Puppy Development</h3>
+      <p>Milestones, fear periods, growth stages, and teething logs — with automatic age calculation from the birthday.</p>
+
+      <h3>Photos</h3>
+      <p>Photo gallery with captions, search, and lightbox view. Photos are embedded in the JSON file — no separate folders needed.</p>
+
+      <h3>Reports</h3>
+      <p>Printable summaries of health, vaccinations, expenses, growth, and training data.</p>
+
+      <h3>Settings</h3>
+      <p>Theme (light/dark/system), file management (open/save/export/import), data export (CSV/JSON datasets), and about information.</p>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="section" id="troubleshooting">
+      <h2>Troubleshooting</h2>
+
+      <h3>The page is blank when I double-click index.html</h3>
+      <p>This is expected. The app uses ES modules which browsers block on <code>file://</code> URLs. Always use the launcher script (<code>start-server.bat</code> on Windows, <code>start-server.sh</code> on macOS/Linux) to run the local server.</p>
+
+      <h3>My data is gone after reopening the browser</h3>
+      <p>You need to save your data file. Go to <strong>Settings → Save As…</strong> and save <code>pet-dashboard.json</code> to a permanent location. On your next visit, use <strong>Settings → Open…</strong> to load it back.</p>
+
+      <h3>Autosave isn't working</h3>
+      <p>Autosave requires the <strong>File System Access API</strong>, which is only available in Chromium-based browsers (Chrome, Edge, Opera). Firefox and Safari fall back to download/upload mode. You can manually save with <strong>Settings → Save</strong> or <strong>Export backup</strong>.</p>
+
+      <h3>The app doesn't work offline</h3>
+      <p>You need to install it as a PWA first. Once installed (via the browser's install prompt), the app caches itself and works offline. On mobile, use "Add to Home screen" for the best offline experience.</p>
+
+      <h3>Search in Health/Expenses/Journal loses focus while typing</h3>
+      <p>This is a known minor issue — the search input briefly loses focus as the list re-renders. The search term is preserved, so just keep typing.</p>
+
+      <h3>Can't connect from my phone</h3>
+      <ul>
+        <li>Make sure both devices are on the <strong>same Wi-Fi network</strong>.</li>
+        <li>Check your computer's <strong>firewall</strong> — it may need to allow incoming connections on port <code>8934</code>.</li>
+        <li>Verify your IP address is correct (run <code>ipconfig</code> on Windows or <code>ifconfig</code> on macOS/Linux).</li>
+      </ul>
+
+      <h3>File changed elsewhere conflict</h3>
+      <p>If you see "This file changed elsewhere," it means the sync client brought in a newer version from another device. Choose <strong>Reload</strong> to get the latest, or <strong>Overwrite</strong> to keep your local edits.</p>
+
+      <h3>Service worker not updating after a change</h3>
+      <p>The app uses a cache version string. After updates, you may need to clear your browser cache or open the app in an incognito window to force a fresh install of the service worker.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="guide-footer">
+      <p>Pet Dashboard — A calm, complete home for your pet's health, training, grooming, and daily life.</p>
+      <p style="margin-top: var(--space-2);">No account. No server. No cloud. Your data, your device.</p>
+    </div>
+
+  </div>
+</body>
+</html>

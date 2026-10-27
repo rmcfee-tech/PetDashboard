@@ -1,0 +1,8 @@
+# Local Data
+pet-dashboard.json
+
+# OS and Environment Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.vscode/

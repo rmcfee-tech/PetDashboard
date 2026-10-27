@@ -1,0 +1,35 @@
+/*
+  dark.css
+  Most dark-mode theming is handled by color variable overrides in
+  variables.css. This file is for the few things variables can't cover:
+  scrollbars, image treatment, and anything else component-specific.
+*/
+
+:root[data-theme="dark"],
+:root:not([data-theme="light"]) {
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) img {
+    filter: brightness(0.92);
+  }
+}
+:root[data-theme="dark"] img {
+  filter: brightness(0.92);
+}
+
+/* Scrollbar tuning (WebKit) so it doesn't glare in dark mode */
+:root[data-theme="dark"] ::-webkit-scrollbar,
+:root:not([data-theme="light"]) ::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb,
+:root:not([data-theme="light"]) ::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+}

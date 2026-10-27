@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "activePetId": "pet-001",
+  "pets": [
+    {
+      "id": "pet-001",
+      "profile": {
+        "photoDataUrl": null,
+        "name": "Otis",
+        "species": "dog",
+        "breed": "Barbet",
+        "sex": "male",
+        "birthday": "2026-03-31",
+        "gotchaDate": "2026-05-26",
+        "breeder": "",
+        "microchip": "",
+        "registration": "",
+        "colour": "brown",
+        "weight": "6.2 kg",
+        "height": "",
+        "vet": { "name": "", "phone": "", "address": "" },
+        "emergencyVet": { "name": "", "phone": "", "address": "" },
+        "insurance": { "provider": "", "policyNumber": "" },
+        "emergencyContact": { "name": "", "phone": "" },
+        "food": { "brand": "", "amount": "", "schedule": "" },
+        "favouriteToys": [],
+        "notes": "Curly water-dog coat — needs regular brushing to avoid matting."
+      },
+      "health": {
+        "vaccinations": [],
+        "medications": [],
+        "allergies": [],
+        "illnesses": [],
+        "injuries": [],
+        "surgeries": [],
+        "weightHistory": [
+          { "id": "wt-001", "date": "2026-07-01", "value": 6.2, "notes": "" }
+        ],
+        "heightHistory": [],
+        "temperatureRecords": [],
+        "heartRateRecords": [],
+        "vetVisits": [],
+        "labResults": [],
+        "insuranceClaims": []
+      },
+      "grooming": {
+        "brushingLog": [],
+        "bathLog": [],
+        "professionalGroomLog": [],
+        "nailTrims": [],
+        "earCleaning": [],
+        "teethBrushing": [],
+        "blowDryerTraining": [],
+        "coatConditionNotes": [],
+        "mattingTracker": [],
+        "reminderRules": [
+          { "type": "brushing", "everyDays": 3 },
+          { "type": "professionalGroom", "everyWeeks": 7 }
+        ]
+      },
+      "training": {
+        "skills": [],
+        "sessions": [],
+        "achievements": [],
+        "socializationChecklist": [],
+        "confidenceLog": [],
+        "recallLog": [],
+        "looseLeashLog": [],
+        "retrieveLog": [],
+        "swimmingLog": [],
+        "impulseControlLog": []
+      },
+      "schedule": {
+        "dailyTasks": [
+          { "id": "task-001", "label": "Morning walk", "timeOfDay": "Morning", "recurring": true, "done": false },
+          { "id": "task-002", "label": "Brush coat", "timeOfDay": "Afternoon", "recurring": true, "done": false }
+        ],
+        "customRecurring": [],
+        "calendarEvents": []
+      },
+      "puppyDevelopment": {
+        "milestones": [],
+        "fearPeriods": [],
+        "growthStages": [],
+        "teethingLog": []
+      },
+      "cat": {
+        "name": "Cleo",
+        "birthday": "2025-01-01",
+        "introductionLog": [],
+        "sharedSpaceNotes": [],
+        "behaviourLog": [],
+        "stressIndicators": []
+      },
+      "daughter": {
+        "name": "",
+        "schedulePattern": "alternating-weekly",
+        "tasksCompleted": [],
+        "trainingSessions": [],
+        "walks": [],
+        "readingSessions": [],
+        "feedingLog": [],
+        "rewards": [],
+        "achievements": []
+      },
+      "expenses": {
+        "categories": ["Food", "Vet", "Insurance", "Training", "Grooming", "Equipment", "Toys", "Medication"],
+        "entries": []
+      },
+      "journal": {
+        "entries": [
+          { "id": "jrnl-001", "date": "2026-07-01", "text": "First trip to the park — great recall for a 14-week-old!", "mood": "happy", "tags": ["training"], "photoIds": [] }
+        ]
+      },
+      "photos": { "items": [] }
+    }
+  ],
+  "settings": {
+    "theme": "system",
+    "units": { "weight": "kg", "height": "cm", "temperature": "C" },
+    "quickAddDefaults": ["weight", "taskComplete", "journal", "expense", "medication"]
+  }
+}

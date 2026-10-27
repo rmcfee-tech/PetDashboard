@@ -1,0 +1,145 @@
+/*
+  variables.css
+  Design tokens. Every color, spacing, and type value used anywhere in the
+  app should come from here — never hard-code a hex value or px size in
+  another stylesheet. This is what makes theming and future redesigns cheap.
+*/
+
+:root {
+  /* ---- Color: warm earth-tone palette, light mode ---- */
+  --color-bg:            #FAF7F2;
+  --color-surface:       #FFFFFF;
+  --color-surface-raised:#FFFFFF;
+  --color-border:        #E8E1D6;
+  --color-text:          #2B2620;
+  --color-text-muted:    #6F6558;
+  --color-text-faint:    #A79E8F;
+
+  --color-primary:       #8A6E4B;   /* warm umber */
+  --color-primary-hover: #755A3A;
+  --color-primary-soft:  #F1E7D8;
+
+  --color-accent:        #6B8F71;   /* sage green, for success/positive */
+  --color-accent-soft:   #E6EEE6;
+
+  --color-warning:       #C77B3C;
+  --color-warning-soft:  #FBEADA;
+
+  --color-danger:        #B4543E;
+  --color-danger-soft:   #F8E4DE;
+
+  --color-info:          #5B7C99;
+  --color-info-soft:     #E6EDF3;
+
+  --shadow-sm: 0 1px 2px rgba(43, 38, 32, 0.06);
+  --shadow-md: 0 4px 12px rgba(43, 38, 32, 0.08);
+  --shadow-lg: 0 12px 32px rgba(43, 38, 32, 0.12);
+
+  /* ---- Spacing scale (rem) ---- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* ---- Radius ---- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-full: 999px;
+
+  /* ---- Typography ---- */
+  --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.75rem;
+  --font-size-2xl: 2.25rem;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+  /* ---- Layout ---- */
+  --sidebar-width: 240px;
+  --bottom-nav-height: 64px;
+  --header-height: 56px;
+  --touch-target-min: 44px;
+
+  /* ---- Motion ---- */
+  --transition-fast: 120ms ease;
+  --transition-normal: 220ms ease;
+
+  /* ---- Z-index scale ---- */
+  --z-nav: 100;
+  --z-fab: 150;
+  --z-modal: 300;
+  --z-toast: 400;
+}
+
+/* ---- Dark mode: system preference ---- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg:             #1C1A17;
+    --color-surface:        #262320;
+    --color-surface-raised: #2E2A26;
+    --color-border:         #3A3530;
+    --color-text:           #F2EDE4;
+    --color-text-muted:     #B8AE9E;
+    --color-text-faint:     #7C7267;
+
+    --color-primary:        #D3B27C;
+    --color-primary-hover:  #E0C393;
+    --color-primary-soft:   #3A331F;
+
+    --color-accent:         #8FB596;
+    --color-accent-soft:    #263A2A;
+
+    --color-warning:        #E0A567;
+    --color-warning-soft:   #3E2E1B;
+
+    --color-danger:         #DB8A73;
+    --color-danger-soft:    #3E241E;
+
+    --color-info:           #8FB0CC;
+    --color-info-soft:      #22303C;
+
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+  }
+}
+
+/* ---- Dark mode: manual override via Settings toggle ---- */
+:root[data-theme="dark"] {
+  --color-bg:             #1C1A17;
+  --color-surface:        #262320;
+  --color-surface-raised: #2E2A26;
+  --color-border:         #3A3530;
+  --color-text:           #F2EDE4;
+  --color-text-muted:     #B8AE9E;
+  --color-text-faint:     #7C7267;
+
+  --color-primary:        #D3B27C;
+  --color-primary-hover:  #E0C393;
+  --color-primary-soft:   #3A331F;
+
+  --color-accent:         #8FB596;
+  --color-accent-soft:    #263A2A;
+
+  --color-warning:        #E0A567;
+  --color-warning-soft:   #3E2E1B;
+
+  --color-danger:         #DB8A73;
+  --color-danger-soft:    #3E241E;
+
+  --color-info:           #8FB0CC;
+  --color-info-soft:      #22303C;
+
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.45);
+}

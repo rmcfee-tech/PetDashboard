@@ -1,0 +1,196 @@
+/*
+  forms.css
+  Form controls used across Profile, Health, Quick Add, etc. Every control
+  respects --touch-target-min so the app is usable one-handed.
+*/
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: var(--space-4);
+}
+
+.field__label {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-muted);
+}
+
+.field__hint {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-faint);
+}
+
+.field__error {
+  font-size: var(--font-size-xs);
+  color: var(--color-danger);
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: var(--font-size-md);
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  min-height: var(--touch-target-min);
+  width: 100%;
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+textarea { min-height: 96px; resize: vertical; }
+
+/* Checkbox / radio: enlarge hit area without changing visual density */
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  width: 22px;
+  height: 22px;
+  min-height: 0;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+input[type="range"] {
+  padding: 0;
+  accent-color: var(--color-primary);
+  min-height: var(--touch-target-min);
+}
+
+/* Segmented control (e.g. rating 1-5, mood picker) */
+.segmented {
+  display: flex;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.segmented button {
+  flex: 1;
+  border: none;
+  background: var(--color-surface);
+  padding: var(--space-3);
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+  border-right: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+.segmented button:last-child { border-right: none; }
+.segmented button.is-selected {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  padding: var(--space-3) var(--space-5);
+  min-height: var(--touch-target-min);
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.btn--primary { background: var(--color-primary); color: #fff; }
+.btn--primary:hover { background: var(--color-primary-hover); }
+
+.btn--secondary { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
+.btn--secondary:hover { background: var(--color-primary-soft); }
+
+.btn--danger { background: var(--color-danger); color: #fff; }
+.btn--danger:hover { filter: brightness(1.05); }
+
+.btn--full { width: 100%; }
+.btn--sm { padding: var(--space-2) var(--space-3); font-size: var(--font-size-xs); min-height: 36px; }
+
+.btn-row {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+/* ---- Modal / bottom sheet (used by Quick Add and edit dialogs) ---- */
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.sheet {
+  background: var(--color-surface);
+  width: 100%;
+  max-width: 560px;
+  max-height: 85vh;
+  overflow-y: auto;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  padding: var(--space-5);
+  box-shadow: var(--shadow-lg);
+}
+
+@media (min-width: 900px) {
+  .sheet-backdrop { align-items: center; }
+  .sheet { border-radius: var(--radius-lg); max-height: 80vh; }
+}
+
+.sheet__handle {
+  width: 40px;
+  height: 4px;
+  background: var(--color-border);
+  border-radius: var(--radius-full);
+  margin: 0 auto var(--space-4);
+}
+
+.sheet__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+}
+
+.sheet__title { font-size: var(--font-size-lg); font-weight: 600; margin: 0; }
+
+/* Quick Add tab strip */
+.quickadd-tabs {
+  display: flex;
+  gap: var(--space-2);
+  overflow-x: auto;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-1);
+}
+.quickadd-tabs button {
+  flex-shrink: 0;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  min-height: var(--touch-target-min);
+  cursor: pointer;
+}
+.quickadd-tabs button.is-active {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}

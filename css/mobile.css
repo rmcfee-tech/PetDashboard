@@ -1,0 +1,59 @@
+/*
+  mobile.css
+  Breakpoint rules. Mobile-first: base styles in other files already target
+  small screens. This file adds the desktop sidebar and hides the bottom
+  nav above the breakpoint, plus a few touch-target/high-contrast overrides.
+*/
+
+/* ---- Desktop breakpoint ---- */
+@media (min-width: 900px) {
+  .sidebar { display: flex; }
+  .bottom-nav { display: none; }
+  .fab { bottom: var(--space-5); }
+  .content { padding: var(--space-6); padding-bottom: var(--space-6); }
+}
+
+/* ---- Small phones: tighten padding, keep touch targets ---- */
+@media (max-width: 380px) {
+  .content { padding: var(--space-3); padding-bottom: calc(var(--bottom-nav-height) + var(--space-5)); }
+  .card { padding: var(--space-3); }
+  .header { padding: 0 var(--space-3); }
+}
+
+/* ---- High contrast support ---- */
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: currentColor;
+  }
+  .card, input, select, textarea, .btn--secondary {
+    border-width: 2px;
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+/* ---- Print (used by Reports and Dashboard) ---- */
+@media print {
+  .sidebar, .bottom-nav, .fab, .header__actions, .skip-link, .quickadd-tabs, .record-toolbar, .btn-row { display: none !important; }
+  body { background: #fff; color: #000; }
+  #app { display: block; }
+  .main { padding: 0; }
+  .content { padding: 0; max-width: none; }
+  .card { break-inside: avoid; box-shadow: none; border: 1px solid #ccc; }
+  .card-grid { display: block; }
+  .card--wide { grid-column: auto; }
+  .page-heading h1 { font-size: 1.5rem; }
+  .card__label { color: #333; }
+  .card__value { color: #000; }
+  .card__meta { color: #555; }
+  .list-row { border-bottom: 1px solid #ccc; }
+  .task-row.is-done .task-row__label { text-decoration: none; color: #333; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 200px; }
+}
